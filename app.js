@@ -1191,7 +1191,7 @@ function attachHandlers() {
   if (sc === 'splash') {
     setTimeout(function(){
       if (S.user && S.token) { go(S.onboarded ? 'main' : 'onboarding'); }
-      else { go('onboarding'); }
+      else { go('signin'); }
     }, 2200);
   }
 
