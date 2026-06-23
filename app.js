@@ -322,6 +322,7 @@ function clearSession() {
 /* =====================================================
    ROUTER
    ===================================================== */
+let internalHistoryCount = 0;
 function go(screen, params = {}, skipHistory = false) {
   S.screen = screen; S.params = params;
   if (screen === 'onboarding') _obSlide = 0;
@@ -333,6 +334,7 @@ function go(screen, params = {}, skipHistory = false) {
       hash += '?' + qs;
     }
     if (window.location.hash !== hash) {
+      internalHistoryCount++;
       window.history.pushState(null, '', hash);
     }
   }
@@ -1046,22 +1048,27 @@ function attachHandlers() {
 
   /* ---- Universal back button ---- */
   on('back-btn', 'click', function(){
-    const backMap = {
-      symptom_checker: function(){ S.activeTab='home'; go('main'); },
-      symptom_detail:  function(){ go('symptom_checker'); },
-      disease_detail:  function(){ S.activeTab='disease'; go('main'); },
-      learn_category:  function(){ S.activeTab='learn'; go('main'); },
-      module_detail:   function(){ go('learn_category',{catId:S.params.catId}); },
-      reminders:       function(){ S.activeTab='profile'; go('main'); },
-      daily_tips:      function(){ S.activeTab='profile'; go('main'); },
-      edit_profile:    function(){ S.activeTab='profile'; go('main'); },
-      privacy_security:function(){ S.activeTab='profile'; go('main'); },
-      privacy_policy:  function(){ S.activeTab='profile'; go('main'); },
-      help_feedback:   function(){ S.activeTab='profile'; go('main'); },
-      delete_account:  function(){ S.activeTab='profile'; go('main'); },
-    };
-    const fn = backMap[sc];
-    if (fn) fn(); else go('main');
+    if (internalHistoryCount > 0) {
+      internalHistoryCount--;
+      window.history.back();
+    } else {
+      const backMap = {
+        symptom_checker: function(){ S.activeTab='home'; go('main'); },
+        symptom_detail:  function(){ go('symptom_checker'); },
+        disease_detail:  function(){ S.activeTab='disease'; go('main'); },
+        learn_category:  function(){ S.activeTab='learn'; go('main'); },
+        module_detail:   function(){ go('learn_category',{catId:S.params.catId}); },
+        reminders:       function(){ S.activeTab='profile'; go('main'); },
+        daily_tips:      function(){ S.activeTab='profile'; go('main'); },
+        edit_profile:    function(){ S.activeTab='profile'; go('main'); },
+        privacy_security:function(){ S.activeTab='profile'; go('main'); },
+        privacy_policy:  function(){ S.activeTab='profile'; go('main'); },
+        help_feedback:   function(){ S.activeTab='profile'; go('main'); },
+        delete_account:  function(){ S.activeTab='profile'; go('main'); },
+      };
+      const fn = backMap[sc];
+      if (fn) fn(); else go('main');
+    }
   });
 
   /* ---- ONBOARDING ---- */
