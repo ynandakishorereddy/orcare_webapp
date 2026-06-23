@@ -271,7 +271,9 @@ const ONBOARDING_SLIDES = [
   {icon:'<i class="ph ph-clock"></i>', bg:'#ccfbf1', title:'Smart Reminders', desc:'Set up daily reminders for brushing, flossing, and more. Building the right habits starts with consistency.'}
 ];
 
-const API_BASE = '/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+  ? '/api' 
+  : 'https://orcare-webapp.onrender.com/api';
 
 /* =====================================================
    STATE
