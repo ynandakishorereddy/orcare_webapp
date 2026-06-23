@@ -324,6 +324,7 @@ function clearSession() {
    ===================================================== */
 function go(screen, params = {}) {
   S.screen = screen; S.params = params;
+  if (screen === 'onboarding') _obSlide = 0;
   render();
 }
 
@@ -470,14 +471,13 @@ function renderReset() { return renderSignIn(); }
    ===================================================== */
 var _obSlide = 0;
 function renderOnboarding() {
-  _obSlide = 0;
   const slides = ONBOARDING_SLIDES.map(function(s,i){
-    return '<div class="onboard-slide ' + (i===0?'active':'') + '" id="ob-slide-' + i + '">'
+    return '<div class="onboard-slide ' + (i===_obSlide?'active':'') + '" id="ob-slide-' + i + '">'
       + '<div class="onboard-img" style="background:' + s.bg + '">' + s.icon + '</div>'
       + '<h2>' + s.title + '</h2><p>' + s.desc + '</p></div>';
   }).join('');
   const dots = ONBOARDING_SLIDES.map(function(_,i){
-    return '<div class="onboard-dot ' + (i===0?'active':'') + '" id="ob-dot-' + i + '"></div>';
+    return '<div class="onboard-dot ' + (i===_obSlide?'active':'') + '" id="ob-dot-' + i + '"></div>';
   }).join('');
   return '<div class="screen onboard-page">'
     + '<div class="onboard-inner">' + slides + '</div>'
