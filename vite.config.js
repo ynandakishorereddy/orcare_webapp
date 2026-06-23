@@ -5,12 +5,12 @@ export default defineConfig({
   root: '.',
 
   server: {
-    port: 5173,
+    port: 3000,
     open: true,          // auto-open browser on dev start
     proxy: {
       // Forward /api calls to the ORCare backend
       '/api': {
-        target: 'http://180.235.121.253:8182',
+        target: 'http://localhost:5000',
         changeOrigin: true,
         rewrite: (path) => path,   // keep /api prefix as-is
       },
