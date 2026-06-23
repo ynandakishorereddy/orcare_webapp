@@ -322,9 +322,21 @@ function clearSession() {
 /* =====================================================
    ROUTER
    ===================================================== */
-function go(screen, params = {}) {
+function go(screen, params = {}, skipHistory = false) {
   S.screen = screen; S.params = params;
   if (screen === 'onboarding') _obSlide = 0;
+
+  if (!skipHistory && screen !== 'splash') {
+    let hash = '#' + screen;
+    if (Object.keys(params).length > 0) {
+      const qs = new URLSearchParams(params).toString();
+      hash += '?' + qs;
+    }
+    if (window.location.hash !== hash) {
+      window.history.pushState(null, '', hash);
+    }
+  }
+
   render();
 }
 
@@ -1070,8 +1082,24 @@ function attachHandlers() {
   /* ---- SPLASH ---- */
   if (sc === 'splash') {
     setTimeout(function(){
-      if (S.user && S.token) { go(S.onboarded ? 'main' : 'onboarding'); }
-      else { go('signin'); }
+      if (S.user && S.token) { 
+        if (S.initialHashScreen && !['signin', 'signup', 'forgot', 'reset', 'otp_signup', 'otp_forgot'].includes(S.initialHashScreen)) {
+          const scr = S.initialHashScreen; const prms = S.initialHashParams;
+          S.initialHashScreen = null; S.initialHashParams = null;
+          go(scr, prms);
+        } else {
+          go(S.onboarded ? 'main' : 'onboarding'); 
+        }
+      }
+      else { 
+        if (S.initialHashScreen && ['signin', 'signup', 'forgot', 'reset', 'otp_signup', 'otp_forgot'].includes(S.initialHashScreen)) {
+          const scr = S.initialHashScreen; const prms = S.initialHashParams;
+          S.initialHashScreen = null; S.initialHashParams = null;
+          go(scr, prms);
+        } else {
+          go('signin'); 
+        }
+      }
     }, 2200);
   }
 
@@ -1486,6 +1514,32 @@ function finishOnboarding() {
    ===================================================== */
 (function boot() {
   loadStorage();
+
+  function parseHash() {
+    const h = window.location.hash.substring(1);
+    if (!h) return null;
+    const parts = h.split('?');
+    const screen = parts[0];
+    const params = {};
+    if (parts[1]) {
+      const sp = new URLSearchParams(parts[1]);
+      sp.forEach((val, key) => { params[key] = val; });
+    }
+    return { screen, params };
+  }
+
+  const initialRoute = parseHash();
+  if (initialRoute) {
+    S.initialHashScreen = initialRoute.screen;
+    S.initialHashParams = initialRoute.params;
+  }
+
+  window.addEventListener('hashchange', () => {
+    const route = parseHash();
+    if (route && route.screen) {
+      go(route.screen, route.params, true);
+    }
+  });
   const SUPABASE_URL = "https://cgnkcweyutjguhcxkhqh.supabase.co";
   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNnbmtjd2V5dXRqZ3VoY3hraHFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNzg4NTIsImV4cCI6MjA5MTg1NDg1Mn0.bnDVTs73KGLzlzXGAAKqvfL_WhPG815ZBDKPuhqt4Pg";
   const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
