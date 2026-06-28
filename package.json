@@ -1,13 +1,55 @@
 {
-  "name": "orcare-html",
+  "name": "orcare-enterprise",
   "version": "1.0.0",
-  "description": "ORCare Web — plain HTML/CSS/JS build",
+  "description": "ORCare Web Application - Enterprise Monorepo",
+  "author": "Nandakishore Reddy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nandakishore-reddy/orcare_webapp.git"
+  },
+  "homepage": "https://orcare-webapp.onrender.com",
+  "bugs": {
+    "url": "https://github.com/nandakishore-reddy/orcare_webapp/issues"
+  },
+  "license": "ISC",
+  "keywords": [
+    "dental",
+    "healthcare",
+    "ai",
+    "chatbot",
+    "express",
+    "vite"
+  ],
+  "main": "server/server.js",
   "scripts": {
-    "dev":     "vite",
-    "build":   "vite build",
-    "preview": "vite preview"
+    "dev:frontend": "vite",
+    "dev:backend": "nodemon server/server.js",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "build": "vite build",
+    "start": "node server/server.js",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.38.0",
+    "axios": "^1.13.5",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "helmet": "^8.0.0",
+    "express-rate-limit": "^7.5.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
+    "concurrently": "^9.1.0",
+    "eslint": "^8.57.0",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.4.2",
     "vite": "^6.0.0"
   }
 }
