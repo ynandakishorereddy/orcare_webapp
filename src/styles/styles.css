@@ -2,14 +2,15 @@
    ORCARE WEB APP — FULL VIEWPORT THEME
    ===================================================== */
 :root {
-  --primary:        #0A2540;
-  --primary-mid:    #1E3A8A;
-  --primary-light:  #3B82F6;
-  --primary-bg:     #EFF6FF;
+  /* Medical Cybernetic Light Theme */
+  --primary:        #0A0F1C;
+  --primary-mid:    #0055FF;
+  --primary-light:  #00F0FF;
+  --primary-bg:     #F0F9FF;
 
-  --accent:         #0284C7;
-  --accent-light:   #38BDF8;
-  --accent-bg:      #F0F9FF;
+  --accent:         #0055FF;
+  --accent-light:   #3B82F6;
+  --accent-bg:      #EFF6FF;
 
   --success:        #10B981;
   --success-bg:     #D1FAE5;
@@ -22,7 +23,7 @@
   --teal:           #14B8A6;
   --teal-bg:        #CCFBF1;
 
-  --bg:             #F4F7F6;
+  --bg:             #F8FAFC;
   --card:           #FFFFFF;
   --sidebar-bg:     #FFFFFF;
   --sidebar-w:      260px;
