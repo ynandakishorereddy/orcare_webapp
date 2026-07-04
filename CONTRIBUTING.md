@@ -1,0 +1,82 @@
+# Contributing Guidelines
+
+1. Fork the repo
+2. Create your feature branch ()
+3. Commit your changes ([feature/fooBar b5c0cdc] Add some fooBar
+ 79 files changed, 3547 insertions(+), 9383 deletions(-)
+ delete mode 100644 app.js
+ delete mode 100644 dist/assets/index-BN0On-zl.css
+ delete mode 100644 dist/assets/index-Bf48JmKY.js
+ delete mode 100644 orcare_backend/.env.example
+ delete mode 100644 orcare_backend/.gitignore
+ delete mode 100644 orcare_backend/MIGRATION_GUIDE.md
+ delete mode 100644 orcare_backend/MIGRATION_README.md
+ delete mode 100644 orcare_backend/MIGRATION_SUMMARY.md
+ delete mode 100644 orcare_backend/ORCare.postman_collection.json
+ delete mode 100644 orcare_backend/ORCare_postman_collection.json
+ delete mode 100644 orcare_backend/ORCare_postman_environment.json
+ delete mode 100644 orcare_backend/android_client/README.md
+ delete mode 100644 orcare_backend/android_client/activities/ForgotPasswordActivity.kt
+ delete mode 100644 orcare_backend/android_client/activities/OtpVerifyActivity.kt
+ delete mode 100644 orcare_backend/android_client/activities/ProfileActivity.kt
+ delete mode 100644 orcare_backend/android_client/activities/ResetPasswordActivity.kt
+ delete mode 100644 orcare_backend/android_client/activities/SignInActivity.kt
+ delete mode 100644 orcare_backend/android_client/activities/SignUpActivity.kt
+ delete mode 100644 orcare_backend/android_client/models/AuthModels.kt
+ delete mode 100644 orcare_backend/android_client/network/ApiService.kt
+ delete mode 100644 orcare_backend/android_client/network/AuthInterceptor.kt
+ delete mode 100644 orcare_backend/android_client/network/RetrofitClient.kt
+ delete mode 100644 orcare_backend/android_client/res/layout/activity_forgot_password.xml
+ delete mode 100644 orcare_backend/android_client/res/layout/activity_otp_verify.xml
+ delete mode 100644 orcare_backend/android_client/res/layout/activity_profile.xml
+ delete mode 100644 orcare_backend/android_client/res/layout/activity_reset_password.xml
+ delete mode 100644 orcare_backend/android_client/res/layout/activity_sign_in.xml
+ delete mode 100644 orcare_backend/android_client/res/layout/activity_sign_up.xml
+ delete mode 100644 orcare_backend/auto_ip_reader.js
+ delete mode 100644 orcare_backend/check_db_schema.js
+ delete mode 100644 orcare_backend/config/db.js
+ delete mode 100644 orcare_backend/config/supabase.js
+ delete mode 100644 orcare_backend/controllers/authController_supabase.js
+ delete mode 100644 orcare_backend/controllers/chatController_supabase.js
+ delete mode 100644 orcare_backend/controllers/contentController_supabase.js
+ delete mode 100644 orcare_backend/controllers/quizController_supabase.js
+ delete mode 100644 orcare_backend/controllers/userController_supabase.js
+ delete mode 100644 orcare_backend/middleware/authMiddleware.js
+ delete mode 100644 orcare_backend/middleware/authMiddleware_supabase.js
+ delete mode 100644 orcare_backend/migration-checklist.sh
+ delete mode 100644 orcare_backend/migrations/001_create_tables.sql
+ delete mode 100644 orcare_backend/models/Chat.js
+ delete mode 100644 orcare_backend/models/Disease.js
+ delete mode 100644 orcare_backend/models/Feedback.js
+ delete mode 100644 orcare_backend/models/LearningCategory.js
+ delete mode 100644 orcare_backend/models/Quiz.js
+ delete mode 100644 orcare_backend/models/User.js
+ delete mode 100644 orcare_backend/package-lock.json
+ delete mode 100644 orcare_backend/package.json
+ delete mode 100644 orcare_backend/routes/authRoutes.js
+ delete mode 100644 orcare_backend/routes/chatRoutes.js
+ delete mode 100644 orcare_backend/routes/contentRoutes.js
+ delete mode 100644 orcare_backend/routes/quizRoutes.js
+ delete mode 100644 orcare_backend/routes/userRoutes.js
+ delete mode 100644 orcare_backend/scripts/migrateMongoToSupabase.js
+ delete mode 100644 orcare_backend/scripts/sendMailToNandu.js
+ delete mode 100644 orcare_backend/scripts/testEmailSend.js
+ delete mode 100644 orcare_backend/scripts/testSend.js
+ delete mode 100644 orcare_backend/seeder.js
+ delete mode 100644 orcare_backend/server.js
+ delete mode 100644 orcare_backend/startup.log
+ delete mode 100644 orcare_backend/test-gemini.js
+ delete mode 100644 orcare_backend/test_chat_direct.js
+ delete mode 100644 orcare_backend/test_connection.js
+ delete mode 100644 orcare_backend/test_controller_handler.js
+ delete mode 100644 orcare_backend/test_email.js
+ delete mode 100644 orcare_backend/test_gemini.js
+ delete mode 100644 orcare_backend/test_robustness.js
+ delete mode 100644 orcare_backend/test_sms.js
+ delete mode 100644 orcare_backend/utils/sendSms.js
+ delete mode 100644 orcare_backend/verify_all_apis.js
+ delete mode 100644 orcare_backend/wipe_quiz_data.js
+ delete mode 100644 styles.css
+ delete mode 100644 temp.js)
+4. Push to the branch ()
+5. Create a new Pull Request
