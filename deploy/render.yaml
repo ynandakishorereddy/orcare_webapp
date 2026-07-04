@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: orcare-backend
+    env: node
+    buildCommand: npm ci --omit=dev
+    startCommand: node server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: orcare-fastapi
+    env: python
+    buildCommand: cd fastapi_backend && pip install -r requirements.txt
+    startCommand: cd fastapi_backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+  - type: web
+    name: orcare-frontend
+    env: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
