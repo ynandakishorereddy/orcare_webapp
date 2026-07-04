@@ -1,5 +1,5 @@
 {
-  "name": "orcare-enterprise",
+  "name": "orcare-webapp",
   "version": "1.0.0",
   "description": "ORCare Web Application - Enterprise Monorepo",
   "author": "Nandakishore Reddy",
@@ -7,11 +7,11 @@
     "type": "git",
     "url": "https://github.com/nandakishore-reddy/orcare_webapp.git"
   },
-  "homepage": "https://orcare-webapp.onrender.com",
+  "homepage": "https://orcare-webapp.vercel.app",
   "bugs": {
     "url": "https://github.com/nandakishore-reddy/orcare_webapp/issues"
   },
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
     "dental",
     "healthcare",

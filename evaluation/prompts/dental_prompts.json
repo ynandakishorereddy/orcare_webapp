@@ -1,0 +1,10 @@
+[
+  {"id": "TC-001", "question": "What causes gum disease?", "expected_keywords": ["plaque", "bacteria", "inflammation"], "category": "conditions", "min_keywords_required": 2},
+  {"id": "TC-002", "question": "How do cavities form?", "expected_keywords": ["acid", "enamel", "bacteria"], "category": "conditions", "min_keywords_required": 2},
+  {"id": "TC-003", "question": "What is a root canal?", "expected_keywords": ["pulp", "infected", "nerve"], "category": "treatments", "min_keywords_required": 2},
+  {"id": "TC-004", "question": "How should I brush my teeth?", "expected_keywords": ["45-degree", "fluoride", "two minutes"], "category": "hygiene", "min_keywords_required": 2},
+  {"id": "TC-005", "question": "When should I see a dentist?", "expected_keywords": ["pain", "bleeding", "regular checkup"], "category": "general", "min_keywords_required": 2},
+  {"id": "TC-006", "question": "What causes tooth sensitivity?", "expected_keywords": ["enamel", "dentin", "erosion"], "category": "conditions", "min_keywords_required": 2},
+  {"id": "TC-007", "question": "What are signs of oral cancer?", "expected_keywords": ["sore", "lump", "red patch", "white patch"], "category": "conditions", "min_keywords_required": 2},
+  {"id": "TC-008", "question": "How often should I floss?", "expected_keywords": ["daily", "once", "gumline"], "category": "hygiene", "min_keywords_required": 1}
+]
