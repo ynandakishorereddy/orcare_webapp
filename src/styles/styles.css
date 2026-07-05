@@ -976,3 +976,56 @@ ul, ol { list-style: none; }
     display: none;
   }
 }
+
+/* =====================================================
+   SUBPAGE HEROS & VERTICAL CARDS (Learning & Disease)
+   ===================================================== */
+.subpage-hero-dark {
+  background: linear-gradient(135deg, var(--primary) 0%, #001f3f 100%);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  color: white;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+}
+
+.learning-grid, .disease-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.learn-cat-cta, .disease-v-cta {
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary);
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.disease-v-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.disease-v-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--border-light); }
+.disease-v-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.disease-v-name { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 6px; }
+.disease-v-desc { font-size: 13px; color: var(--text-3); flex: 1; margin-bottom: 16px; line-height: 1.4;}

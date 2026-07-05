@@ -416,11 +416,17 @@ function renderLearnContent() {
       + '<div class="learn-cat-icon" style="background:' + cat.bg + '">' + cat.icon + '</div>'
       + '<div class="learn-cat-title">' + cat.title + '</div>'
       + '<div class="learn-cat-count">' + modCount + ' modules</div>'
+      + '<div class="learn-cat-cta">Start Learning <i class="ph ph-arrow-right"></i></div>'
       + '<div class="learn-cat-progress"><div class="learn-cat-bar" style="width:0%"></div></div>'
       + '</div>';
   }).join('');
-  return '<div class="page">'
-    + '<p style="font-size:13px;color:var(--text-2);margin-bottom:20px">Explore ' + LEARNING.length + ' categories and 24+ expert modules</p>'
+  return '<div class="page page-dashboard">'
+    + '<div class="subpage-hero-dark">'
+    + '  <div class="hero-status"><i class="ph ph-books"></i> KNOWLEDGE BASE</div>'
+    + '  <h1 class="hero-greeting">Learning Center</h1>'
+    + '  <p class="hero-subtext">Explore <strong>' + LEARNING.length + '</strong> categories and <strong>24+</strong> expert modules to improve your oral hygiene.</p>'
+    + '</div>'
+    + '<div class="section-title">Educational Modules</div>'
     + '<div class="learning-grid">' + cats + '</div>'
     + '</div>';
 }
@@ -430,15 +436,20 @@ function renderLearnContent() {
    ===================================================== */
 function renderDiseaseContent() {
   const cards = DISEASES.map(function(d){
-    return '<div class="disease-card" data-disease="' + d.id + '">'
-      + '<div class="disease-card-icon" style="background:' + d.bg + '; color:' + d.color + '">' + d.icon + '</div>'
-      + '<div class="disease-card-body">'
-      + '<div class="disease-card-name">' + d.name + '</div>'
-      + '<div class="disease-card-desc">' + d.whatPeopleNotice.slice(0,70) + '...</div>'
-      + '</div><div class="disease-card-arrow">›</div></div>';
+    return '<div class="disease-v-card" data-disease="' + d.id + '">'
+      + '<div class="disease-v-icon" style="background:' + d.bg + '; color:' + d.color + '">' + d.icon + '</div>'
+      + '<div class="disease-v-name">' + d.name + '</div>'
+      + '<div class="disease-v-desc">' + d.whatPeopleNotice.slice(0,70) + '...</div>'
+      + '<div class="disease-v-cta">View Details <i class="ph ph-arrow-right"></i></div>'
+      + '</div>';
   }).join('');
-  return '<div class="page">'
-    + '<p style="font-size:13px;color:var(--text-2);margin-bottom:20px">Learn about common oral diseases, causes, and when to see a dentist</p>'
+  return '<div class="page page-dashboard">'
+    + '<div class="subpage-hero-dark">'
+    + '  <div class="hero-status"><i class="ph ph-tooth"></i> CLINICAL REFERENCE</div>'
+    + '  <h1 class="hero-greeting">Oral Diseases Guide</h1>'
+    + '  <p class="hero-subtext">Learn about common oral diseases, early warning signs, causes, and when to consult a professional.</p>'
+    + '</div>'
+    + '<div class="section-title">Common Conditions</div>'
     + '<div class="disease-grid">' + cards + '</div>'
     + '</div>';
 }
@@ -866,7 +877,7 @@ function attachHandlers() {
           S.initialHashScreen = null; S.initialHashParams = null;
           go(scr, prms);
         } else {
-          go(S.onboarded ? 'main' : 'onboarding'); 
+          go('main'); 
         }
       }
       else { 
@@ -1393,7 +1404,7 @@ function finishOnboarding() {
           const res = await apiCall('POST', '/auth/google-login', { access_token: session.access_token });
           saveSession(res.token, res.user || res.data?.user);
           toast('Welcome to ORCare!', 'success');
-          go(S.onboarded ? 'main' : 'onboarding');
+          go('main');
         } catch (err) {
           toast('Failed to login: ' + err.message, 'danger');
         }
