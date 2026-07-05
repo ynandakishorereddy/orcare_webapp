@@ -283,7 +283,47 @@ function renderMain() {
     + '<div class="top-bar"><div class="top-bar-title">' + topBarIcons[S.activeTab] + ' ' + topBarTitles[S.activeTab] + '</div>' + topBarExtra + '</div>'
     + '<div class="app-content" ' + appContentStyle + '>' + inner + '</div>'
     + '<nav class="bottom-nav">' + tabs + '</nav>'
-    + '</div></div>';
+    + '</div>'
+    + renderContextPanel()
+    + '</div>';
+}
+
+function renderContextPanel() {
+  // Only show right panel on Home and Chat (or everywhere on desktop)
+  return '<aside class="context-panel">'
+    + '<div class="context-panel-header">Patient Analytics & Records</div>'
+    + '<div class="context-panel-sub">Sarah Jenkins</div>'
+    + '<div class="card context-card">'
+    + '  <div class="card-body" style="padding:16px;">'
+    + '    <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">'
+    + '      <div style="width:40px; height:40px; border-radius:50%; background:var(--primary-bg); color:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:700;">SJ</div>'
+    + '      <div><div style="font-size:14px; font-weight:700; color:var(--text-1);">Dental Summary</div><div style="font-size:12px; color:var(--text-3);">Last Visit: Jun 15, 2025</div></div>'
+    + '    </div>'
+    + '    <div style="background:var(--bg); border-radius:var(--radius-sm); padding:12px; border:1px solid var(--border-light);">'
+    + '       <div style="font-size:12px; font-weight:600; color:var(--text-2); margin-bottom:4px;">Tooth #18</div>'
+    + '       <div style="font-size:12px; color:var(--primary); font-weight:600;"><i class="ph ph-warning-circle"></i> Cavity Risk 88%</div>'
+    + '    </div>'
+    + '  </div>'
+    + '</div>'
+    + '<div class="context-section-title">Recent Documents</div>'
+    + '<div class="context-doc-card">'
+    + '  <div class="context-doc-icon"><i class="ph ph-file-pdf"></i></div>'
+    + '  <div class="context-doc-info"><div class="context-doc-name">Sarah_J_Pan_XR.pdf</div><div class="context-doc-meta">2.4 MB · Analyzed <i class="ph ph-check-circle" style="color:var(--success);"></i></div></div>'
+    + '</div>'
+    + '<div class="context-doc-card">'
+    + '  <div class="context-doc-icon"><i class="ph ph-file-pdf"></i></div>'
+    + '  <div class="context-doc-info"><div class="context-doc-name">Care_Plan_V2.pdf</div><div class="context-doc-meta">1.1 MB</div></div>'
+    + '</div>'
+    + '<div class="context-section-title">Dental Statistics</div>'
+    + '<div class="stat-progress-row">'
+    + '  <div class="stat-progress-label">Gum Health Index: 7.2/10</div>'
+    + '  <div class="stat-progress-bar"><div class="stat-progress-fill" style="width:72%; background:var(--primary-light);"></div></div>'
+    + '</div>'
+    + '<div class="stat-progress-row">'
+    + '  <div class="stat-progress-label">Risk Assessment: <span style="color:var(--warning);">Medium</span></div>'
+    + '  <div class="stat-progress-bar"><div class="stat-progress-fill" style="width:50%; background:var(--warning);"></div></div>'
+    + '</div>'
+    + '</aside>';
 }
 
 /* =====================================================
@@ -292,38 +332,35 @@ function renderMain() {
 function renderHomeContent() {
   const tip = getDailyTip();
   const name = S.user ? S.user.name || S.user.email : 'Guest';
-  const ini = initials(name);
-  return '<div class="home-hero">'
-    + '<div class="home-header-row"><div><div class="home-greeting">' + greet() + ' <i class="ph ph-hand-waving"></i></div>'
-    + '<div class="home-name">' + name + '</div></div>'
-    + '<div class="home-avatar" id="home-avatar-btn">' + ini + '</div></div>'
+  
+  return '<div class="page page-dashboard">'
+    + '<div class="home-hero-dark">'
+    + '  <div class="hero-status"><span class="status-dot"></span> AI SYSTEMS ONLINE</div>'
+    + '  <h1 class="hero-greeting">Good morning, Dr. ' + name.split(' ')[0] + ' <i class="ph ph-hand-waving" style="color:#FFD700;"></i></h1>'
+    + '  <p class="hero-subtext">You have <strong>4 patients</strong> scheduled today and <strong>2 AI analyses</strong> pending review.</p>'
+    + '  <div class="hero-actions">'
+    + '    <button class="btn-primary" data-action="chat_tab"><i class="ph ph-chat-teardrop-text"></i> Open AI Chat</button>'
+    + '    <button class="btn-ghost hero-ghost-btn"><i class="ph ph-eye"></i> View Analyses</button>'
+    + '  </div>'
     + '</div>'
-    + '<div class="page">'
-    + '<div class="section-title">Quick Actions</div>'
-    + '<div class="quick-grid">'
-    + quickCard('<i class="ph ph-magnifying-glass"></i>','Symptom Checker','Check your symptoms','#dbeafe','symptom_checker')
-    + quickCard('<i class="ph ph-robot"></i>','Ask AI','Oral health queries','#ede9fe','chat_tab')
-    + quickCard('<i class="ph ph-clock"></i>','Reminders','Daily hygiene alerts','#ccfbf1','reminders')
-    + quickCard('<i class="ph ph-lightbulb"></i>','Daily Tips','Oral health tips','#fef3c7','daily_tips')
-    + '</div>'
-    + '<div class="section-title">Today\'s Health Tip</div>'
-    + '<div class="tip-card"><div class="tip-icon-box">' + tip.icon + '</div>'
-    + '<div class="tip-info"><div class="tip-badge">Daily Tip</div>'
-    + '<h4>' + tip.title + '</h4><p>' + tip.desc + '</p></div></div>'
-    + '<div class="section-title">ORCare at a Glance</div>'
-    + '<div class="stat-row">'
-    + '<div class="stat-card"><div class="stat-val">10</div><div class="stat-lbl">Reminders</div></div>'
-    + '<div class="stat-card"><div class="stat-val">24+</div><div class="stat-lbl">Modules</div></div>'
-    + '<div class="stat-card"><div class="stat-val">6</div><div class="stat-lbl">Diseases</div></div>'
-    + '<div class="stat-card"><div class="stat-val">14</div><div class="stat-lbl">Symptoms</div></div>'
+    
+    + '<div class="section-title">Quick Actions <span class="see-all">View all</span></div>'
+    + '<div class="quick-grid-vertical">'
+    + quickCardVertical('<i class="ph ph-upload-simple"></i>','Upload X-Ray','Analyze dental images with AI','var(--primary-bg)','var(--primary)','chat_tab')
+    + quickCardVertical('<i class="ph ph-chat-circle-dots"></i>','New AI Chat','Start a diagnostic session','#ede9fe','#8B5CF6','chat_tab')
+    + quickCardVertical('<i class="ph ph-activity"></i>','View Tips','Oral hygiene guidance','var(--success-bg)','var(--success)','daily_tips')
+    + quickCardVertical('<i class="ph ph-trend-up"></i>','Health Report','Patient progress overview','#dbeafe','#3B82F6','symptom_checker')
     + '</div>'
     + '</div>';
 }
-function quickCard(icon,title,sub,bg,action) {
-  return '<div class="quick-card" data-action="' + action + '">'
-    + '<div class="quick-card-icon" style="background:' + bg + '">' + icon + '</div>'
-    + '<div class="quick-card-title">' + title + '</div>'
-    + '<div class="quick-card-sub">' + sub + '</div></div>';
+
+function quickCardVertical(icon,title,sub,bg,color,action) {
+  return '<div class="quick-card-vertical" data-action="' + action + '">'
+    + '<div class="quick-card-v-icon" style="background:' + bg + '; color:' + color + ';">' + icon + '</div>'
+    + '<div class="quick-card-v-title">' + title + '</div>'
+    + '<div class="quick-card-v-sub">' + sub + '</div>'
+    + '<div class="quick-card-v-link" style="color:' + color + ';">Open <i class="ph ph-arrow-up-right"></i></div>'
+    + '</div>';
 }
 
 /* =====================================================
